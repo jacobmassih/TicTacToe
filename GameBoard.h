@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include <Player.h>
+#include <memory>
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class GameBoard; }
 QT_END_NAMESPACE
@@ -14,22 +16,26 @@ class GameBoard : public QMainWindow
 public:
     GameBoard(QWidget *parent = nullptr);
     ~GameBoard();
-    Player* swap();
+    void swap();
     bool CheckWinner();
     bool checkDraw();
-    void checkOverAll();
+    bool checkOverAll();
     void setLabel();
+    bool checkReset();
 
 private:
     Ui::GameBoard *ui;
-    Player p1;
-    Player p2;
-    Player* current;
+    std::shared_ptr<Player> p1;
+    std::shared_ptr<Player> p2;
+    std::shared_ptr<Player> current;
     static int x;
 
 private slots:
     void setValue();
     void reset();
-
+    void setPage();
+    void initMainPage();
+    void setComputer();
+    void computerPlay();
 };
 #endif // GameBoard_H

@@ -1,15 +1,37 @@
 #include "Player.h"
+#include <stdlib.h>
+#include <time.h>
 
-Player::Player(const std::string& name, char sign)
-    :name_(name), sign_(sign){}
+Player::Player(const QString& name, const QChar& sign, bool isHuman)
+    :name_(name), sign_(sign), isHuman_(isHuman){}
 
-const std::string& Player::getName() const
+const QString& Player::getName() const
 {
     return name_;
 }
 
-char Player::getSign() const
+const QChar& Player::getSign() const
 {
     return sign_;
 }
+void Player::setName(QString name)
+{
+    name_ = name;
+}
 
+void Player::setIsHuman(bool isHuman)
+{
+    isHuman_ = isHuman;
+}
+
+bool Player::getIsHuman() const
+{
+    return isHuman_;
+}
+int Player::genNumber()
+{
+    srand(time(0));
+
+    // Number between 0 and 9
+    return rand() % 9;
+}

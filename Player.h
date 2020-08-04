@@ -1,17 +1,27 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include <string>
+#include <QObject>
 
 class Player
 {
 public:
-    Player(const std::string& name, char sign);
-    const std::string& getName() const;
-    char getSign() const;
+    Player(const QString& name, const QChar& sign, bool isHuman);
+
+    // Getters
+    const QString& getName() const;
+    const QChar& getSign() const;
+    bool getIsHuman() const;
+
+    // Setters
+    void setName(QString name);
+    void setIsHuman(bool isHuman);
+
+    int genNumber();
 private:
-    std::string name_;
-    char sign_;
+    QString name_;
+    QChar sign_;
+    bool isHuman_;
 };
 
 #endif // PLAYER_H
