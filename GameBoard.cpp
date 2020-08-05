@@ -13,26 +13,9 @@ GameBoard::GameBoard(QWidget *parent)
     ui->setupUi(this);
     GameBoard::setWindowTitle("Tic Tac Toe v1");
 
-    connect(ui->real, SIGNAL(released()), this, SLOT(initMainPage()));
-
-    connect(ui->fake, SIGNAL(released()), this, SLOT(initMainPage()));
-    connect(ui->fake, SIGNAL(released()), this, SLOT(setComputer()));
-}
-
-
-GameBoard::~GameBoard()
-{
-    delete ui;
-}
-
-
-void GameBoard::initMainPage()
-{
-    ui->stackedWidget->setCurrentIndex(1);
-
     // Init players
-    p1 = std::make_unique<Player>("Player1", 'X', true);
-    p2 = std::make_unique<Player>("Player2", 'O', true);
+    p1 = std::make_shared<Player>("Player1", 'X', true);
+    p2 = std::make_shared<Player>("Player2", 'O', true);
     current = p1;
 
     // Connecting 9 buttons
@@ -43,18 +26,34 @@ void GameBoard::initMainPage()
         name[i] = findChild<QPushButton*>(buttonName);
         connect(name[i], SIGNAL(released()), this, SLOT(setValue()));
     }
-    setLabel();
 
-    connect(ui->restart, SIGNAL(released()), this, SLOT(reset()));
+    setLabel();
+    connect(ui->restart,  SIGNAL(released()), this, SLOT(reset()));
+    connect(ui->mainMenu, SIGNAL(released()), this, SLOT(mainMenu()));
+
+
+
+
+    connect(ui->real, SIGNAL(released()), this, SLOT(multiPlayer()));
+    connect(ui->fake, SIGNAL(released()), this, SLOT(singlePlayer()));
 }
 
 
-void GameBoard::setPage()
+GameBoard::~GameBoard()
+{
+    delete ui;
+}
+
+
+void GameBoard::multiPlayer()
 {
     ui->stackedWidget->setCurrentIndex(1);
+    p2->setName("Player2");
+    p2->setIsHuman(true);
 }
 
-void GameBoard::swap()
+
+void GameBoard::swapPlayer()
 {
     x++;
     if(x % 2 == 0)
@@ -63,26 +62,37 @@ void GameBoard::swap()
         current = p2;
 }
 
+void GameBoard::mainMenu()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+    reset();
+}
 
 void GameBoard::setValue()
 {
     QPushButton* button = (QPushButton*)sender();
     if(button->text() != "X" && button->text() != "O")
     {
+        bool is_reset = false;
         button->setText(QString(current->getSign()));
 
-        if(!checkOverAll())
+        if(gameOver())
         {
-            swap();
+            reset();
+            is_reset = true;
+        } else
+        {
+            swapPlayer();
             setLabel();
         }
 
+        //QCoreApplication::processEvents();
 
-        QCoreApplication::processEvents();
-
-        if(!(current->getIsHuman()) && !checkReset())
+        if(!(current->getIsHuman()) && !is_reset)
         {
-            emit(computerPlay());
+            qDebug() << "aaa";
+
+            computerPlay();
         }
     }
 }
@@ -90,28 +100,36 @@ void GameBoard::setValue()
 void GameBoard::computerPlay()
 {
     QPushButton* button;
+
     do{
         int num = current->genNumber();
         button = findChild<QPushButton*>("button_" + QString::number(num));
     }while(!(button->text() == ""));
+
     sleep(1);
     button->setText(current->getSign());
 
-    if(!checkOverAll())
+    if(gameOver())
     {
-        swap();
+        reset();
+    } else
+    {
+        swapPlayer();
         setLabel();
     }
+
 }
-void GameBoard::setComputer()
+
+void GameBoard::singlePlayer()
 {
+    ui->stackedWidget->setCurrentIndex(1);
     p2->setName("Computer");
     p2->setIsHuman(false);
 }
 
-bool GameBoard::checkOverAll()
+bool GameBoard::gameOver()
 {
-    if(CheckWinner())
+    if(checkWinner())
     {
         QMessageBox* winner = new QMessageBox();
         QString player = QString(current->getSign()) + " - " + current->getName();
@@ -119,7 +137,6 @@ bool GameBoard::checkOverAll()
         winner->setText(player + " is the winner.\nCongratulations!");
         winner->exec();
         delete winner;
-        reset();
         return true;
     }
     else if(checkDraw())
@@ -129,13 +146,12 @@ bool GameBoard::checkOverAll()
         draw->setText("The GameBoard ended with a draw!\nThere is no winner.");
         draw->exec();
         delete draw;
-        reset();
         return true;
     }
     return false;
 }
 
-bool GameBoard::CheckWinner()
+bool GameBoard::checkWinner()
 {
     //Horizontal
     if(ui->button_0->text() == ui->button_1->text() &&
@@ -220,15 +236,3 @@ void GameBoard::setLabel()
     ui->player_disp->setText(currentPlayer);
 }
 
-bool GameBoard::checkReset()
-{
-    QPushButton* name[9];
-    for(int i =0; i < 9; i++)
-    {
-        QString buttonName = "button_" + QString::number(i);
-        name[i] = findChild<QPushButton*>(buttonName);
-        if(name[i]->text() != "")
-            return false;
-    }
-    return true;
-}

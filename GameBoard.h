@@ -16,12 +16,14 @@ class GameBoard : public QMainWindow
 public:
     GameBoard(QWidget *parent = nullptr);
     ~GameBoard();
-    void swap();
-    bool CheckWinner();
+    void swapPlayer();
+
+    bool checkWinner();
     bool checkDraw();
-    bool checkOverAll();
+    bool gameOver();
+
     void setLabel();
-    bool checkReset();
+    void computerPlay();
 
 private:
     Ui::GameBoard *ui;
@@ -33,9 +35,8 @@ private:
 private slots:
     void setValue();
     void reset();
-    void setPage();
-    void initMainPage();
-    void setComputer();
-    void computerPlay();
+    void multiPlayer();
+    void singlePlayer();
+    void mainMenu();
 };
 #endif // GameBoard_H

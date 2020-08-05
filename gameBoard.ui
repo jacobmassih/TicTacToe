@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>414</width>
-    <height>574</height>
+    <width>405</width>
+    <height>470</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,9 +19,15 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>411</width>
-      <height>571</height>
+      <width>401</width>
+      <height>461</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
     </property>
     <property name="currentIndex">
      <number>0</number>
@@ -58,26 +64,42 @@
       <property name="geometry">
        <rect>
         <x>150</x>
-        <y>140</y>
+        <y>210</y>
         <width>101</width>
         <height>51</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>12</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
       <property name="text">
-       <string>Real</string>
+       <string>Two Players</string>
       </property>
      </widget>
      <widget class="QPushButton" name="fake">
       <property name="geometry">
        <rect>
         <x>150</x>
-        <y>220</y>
+        <y>130</y>
         <width>101</width>
         <height>51</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>12</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
       <property name="text">
-       <string>Fake</string>
+       <string>One Player</string>
       </property>
      </widget>
     </widget>
@@ -93,7 +115,10 @@
       </property>
       <property name="font">
        <font>
-        <pointsize>12</pointsize>
+        <family>MS UI Gothic</family>
+        <pointsize>24</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
        </font>
       </property>
       <property name="text">
@@ -111,7 +136,10 @@
       </property>
       <property name="font">
        <font>
-        <pointsize>12</pointsize>
+        <family>MS UI Gothic</family>
+        <pointsize>24</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
        </font>
       </property>
       <property name="text">
@@ -131,6 +159,8 @@
        <font>
         <family>Arial</family>
         <pointsize>10</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
       <property name="text">
@@ -140,8 +170,8 @@
      <widget class="QPushButton" name="restart">
       <property name="geometry">
        <rect>
-        <x>154</x>
-        <y>380</y>
+        <x>60</x>
+        <y>390</y>
         <width>101</width>
         <height>41</height>
        </rect>
@@ -150,6 +180,8 @@
        <font>
         <family>Arial</family>
         <pointsize>12</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
       <property name="text">
@@ -167,7 +199,10 @@
       </property>
       <property name="font">
        <font>
-        <pointsize>12</pointsize>
+        <family>MS UI Gothic</family>
+        <pointsize>24</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
        </font>
       </property>
       <property name="text">
@@ -207,7 +242,10 @@
       </property>
       <property name="font">
        <font>
-        <pointsize>12</pointsize>
+        <family>MS UI Gothic</family>
+        <pointsize>24</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
        </font>
       </property>
       <property name="text">
@@ -225,7 +263,10 @@
       </property>
       <property name="font">
        <font>
-        <pointsize>12</pointsize>
+        <family>MS UI Gothic</family>
+        <pointsize>24</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
        </font>
       </property>
       <property name="text">
@@ -287,7 +328,10 @@
       </property>
       <property name="font">
        <font>
-        <pointsize>12</pointsize>
+        <family>MS UI Gothic</family>
+        <pointsize>24</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
        </font>
       </property>
       <property name="text">
@@ -305,7 +349,10 @@
       </property>
       <property name="font">
        <font>
-        <pointsize>12</pointsize>
+        <family>MS UI Gothic</family>
+        <pointsize>24</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
        </font>
       </property>
       <property name="text">
@@ -323,7 +370,10 @@
       </property>
       <property name="font">
        <font>
-        <pointsize>12</pointsize>
+        <family>MS UI Gothic</family>
+        <pointsize>24</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
        </font>
       </property>
       <property name="text">
@@ -341,7 +391,10 @@
       </property>
       <property name="font">
        <font>
-        <pointsize>12</pointsize>
+        <family>MS UI Gothic</family>
+        <pointsize>24</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
        </font>
       </property>
       <property name="text">
@@ -395,6 +448,27 @@
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="mainMenu">
+      <property name="geometry">
+       <rect>
+        <x>230</x>
+        <y>390</y>
+        <width>101</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>12</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Main Menu</string>
       </property>
      </widget>
     </widget>
