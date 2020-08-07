@@ -60,7 +60,7 @@
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QPushButton" name="real">
+     <widget class="QPushButton" name="multi">
       <property name="geometry">
        <rect>
         <x>150</x>
@@ -81,7 +81,7 @@
        <string>Two Players</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="fake">
+     <widget class="QPushButton" name="single">
       <property name="geometry">
        <rect>
         <x>150</x>

@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <Player.h>
 #include <memory>
+#include <QPushButton>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class GameBoard; }
@@ -23,7 +24,8 @@ public:
     bool gameOver();
 
     void setLabel();
-    void computerPlay();
+    void aiMove();
+    int minimax(int depth, bool isMaximizing);
 
 private:
     Ui::GameBoard *ui;
@@ -39,4 +41,5 @@ private slots:
     void singlePlayer();
     void mainMenu();
 };
+
 #endif // GameBoard_H
