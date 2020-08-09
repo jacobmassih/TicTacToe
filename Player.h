@@ -17,7 +17,6 @@ public:
     void setName(QString name);
     void setIsHuman(bool isHuman);
 
-    int genNumber();
 private:
     QString name_;
     QChar sign_;
